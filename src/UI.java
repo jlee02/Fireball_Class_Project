@@ -19,6 +19,7 @@ public class UI {
 			while (loggedIn) {
 				System.out.print("Student User ID: ");
 				currentStudent = findStudent(Integer.parseInt(input.nextLine()));
+				System.out.println(currentStudent.toString());
 				System.out.println("Editing " + currentStudent.name);
 			}
 		}
@@ -41,14 +42,22 @@ public class UI {
 	}
 
 	private static Student findStudent(int studentID) {
-		if (tracks.find(studentID) == null)
-		{
+		if (tracks.find(studentID) == null) {
 			System.out.println("Student ID " + studentID + " not found.");
-			System.out.print("Create new student profile with ID " + studentID + " (y/n)? ");
-			if (input.nextLine().equals("y"))
-			{
+			System.out.print("Create new student profile with ID " + studentID
+					+ " (y/n)? ");
+			if (input.nextLine().equals("y")) {
 				System.out.print("Student Name: ");
-				tracks.studentDB.add(new Student(studentID, input.nextLine()));
+				String studentName = input.nextLine();
+				String major = input.nextLine();
+				DegreePlan degree = null;
+				for (DegreePlan search : Database.degreePlanDB) {
+					if (search.name.equals(major))
+						degree = search;
+				}
+				tracks.studentDB
+						.add(new Student(studentID, studentName, degree));
+
 				System.out.println("Success");
 			}
 		}
