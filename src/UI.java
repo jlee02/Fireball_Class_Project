@@ -18,7 +18,7 @@ public class UI {
 			login();
 			while (loggedIn) {
 				System.out.print("Student User ID: ");
-				currentStudent = findStudent(Integer.parseInt(input.nextLine()));
+				currentStudent = loadStudent(Integer.parseInt(input.nextLine()));
 				System.out.println(currentStudent.toString());
 				System.out.println("Editing " + currentStudent.name);
 			}
@@ -41,7 +41,7 @@ public class UI {
 		loggedIn = false;
 	}
 
-	private static Student findStudent(int studentID) {
+	private static Student loadStudent(int studentID) {
 		if (tracks.find(studentID) == null) {
 			System.out.println("Student ID " + studentID + " not found.");
 			System.out.print("Create new student profile with ID " + studentID

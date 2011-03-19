@@ -1,7 +1,6 @@
 import java.util.Vector;
 
 public class SDP {
-
 	Vector<CourseReq> courseReqs = new Vector<CourseReq>();
 	Vector<ElectiveReq> electiveReqs = new Vector<ElectiveReq>();
 
@@ -18,16 +17,14 @@ public class SDP {
 		for (ElectiveReq electiveReq : deg.electiveReqs)
 			this.electiveReqs.add(electiveReq);
 	}
-	
+
 	public String toString() {
 		String returnMe = "";
-		for (CourseReq courseR : courseReqs)
-		{
-			returnMe.concat(courseR.course.info);
+		for (CourseReq courseR : courseReqs) {
+			returnMe = returnMe + courseR.course.info + ": " + String.valueOf(courseR.met) + "\n";
 		}
-		for (ElectiveReq electiveR : electiveReqs)
-		{
-			returnMe.concat(electiveR.course.info);
+		for (ElectiveReq electiveR : electiveReqs) {
+			returnMe = returnMe + electiveR.course.info + ": " + String.valueOf(electiveR.met) + "\n";
 		}
 		return returnMe;
 	}

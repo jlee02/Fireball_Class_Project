@@ -18,10 +18,9 @@ public class Student {
 		this.name = name;
 		sDP = new SDP(deg);
 	}
-	
+
 	public String toString() {
-		String returnMe = "";
-		returnMe.concat(this.name + "\n" + this.studentID + "\n" + this.sDP);
-		return name;
+		return String.valueOf(this.studentID) + " - " + this.name + "\n"
+				+ this.sDP;
 	}
 }

@@ -3,7 +3,7 @@ public class Course {
 	String info;
 
 	public Course(int courseID, String info) {
-		courseID = courseID;
-		info = info;
+		this.courseID = courseID;
+		this.info = info;
 	}
 }
