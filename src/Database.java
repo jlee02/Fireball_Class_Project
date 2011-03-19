@@ -30,6 +30,9 @@ public class Database {
 		electiveR.add(electiveRDB.firstElement());
 		electiveR.add(electiveRDB.lastElement());
 		studentDB.add(new Student(9000, "Sam", courseR, electiveR));
+		studentDB.elementAt(0).unallocatedCourses.add(courseDB.elementAt(0));
+		studentDB.elementAt(0).unallocatedCourses.add(courseDB.elementAt(2));
+		studentDB.elementAt(0).fillRequirements();
 		courseR.remove(courseR.lastElement());
 		electiveR.remove(electiveR.lastElement());
 		studentDB.add(new Student(9001, "Bob", courseR, electiveR));
