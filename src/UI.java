@@ -21,7 +21,8 @@ public class UI {
 				currentStudent = loadStudent(Integer.parseInt(input.nextLine()));
 				System.out.println(currentStudent.toString());
 				System.out.println("Editing " + currentStudent.name);
-				
+				System.out.println("Autofilling requirements...");
+				currentStudent.fillRequirements();
 			}
 		}
 	}

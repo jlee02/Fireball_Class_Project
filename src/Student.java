@@ -34,5 +34,13 @@ public class Student {
 				+ this.sDP;
 	}
 
-	
+	public void fillRequirements() {
+		// TODO Auto-generated method stub
+		for (Course course : unallocatedCourses)
+		{
+			for (CourseReq courseReq : this.sDP.courseReqs)
+				if (course.courseID == courseReq.course.courseID)
+					courseReq.met = true;
+		}
+	}
 }
