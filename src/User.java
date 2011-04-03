@@ -8,4 +8,28 @@ public abstract class User {
 		this.name = name;
 		this.password = password;
 	}
+
+	public long getiD() {
+		return iD;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setiD(long iD) {
+		this.iD = iD;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
 }

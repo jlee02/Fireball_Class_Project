@@ -1,46 +1,89 @@
 import java.util.Vector;
 
-public class Student {
-	int studentID;
-	String name;
-	SDP sDP;
-	Vector<Course> unallocatedCourses = new Vector<Course>();
+public class Student extends User {
+	private Vector<Course> coursesTaken;
+	private DegreePlan degreePlan;
+	private long studentID;
+	private Vector<Course> unusedCourses;
 
-	public Student(int studentID, String name, Vector<CourseReq> courseR,
-			Vector<ElectiveReq> electiveR) {
-		this.studentID = studentID;
-		this.name = name;
-		sDP = new SDP(courseR, electiveR);
+	public Student(long studentID) throws Exception {
+		super(0, "", "");
+		DBStudent temp = ExternalDB.getInstance().findStudent(studentID);
+		this.setiD(InternalDB.getUsers().size());
+		this.setName(temp.name);
+		this.setPassword(temp.password);
+		this.setStudentID(studentID);
+		this.coursesTaken = temp.coursesTaken;
+		this.unusedCourses = temp.coursesTaken;
 	}
 
-	// for a student with a fresh DegreePlan and no existing courses
-	public Student(int studentID, String name, DegreePlan deg) {
-		this.studentID = studentID;
-		this.name = name;
-		sDP = new SDP(deg);
+	public String fullView() {
+		String returnMe = "========================================\n";
+		returnMe += "Student ID:   " + String.valueOf(this.getStudentID())
+				+ "\n";
+		returnMe += "Student Name: " + this.getName() + "\n";
+		returnMe += "Student Major: " + this.degreePlan.getMajor() + "\n";
+		for (Requirement req : this.degreePlan.getRequirements())
+			returnMe += req + "\n";
+		returnMe += "========================================";
+		return returnMe;
 	}
-	
-	// for an existing student with an existing SDP and unallocated courses
-	public Student (int studentID, String name, SDP sdpStudent, 
-			Vector<Course> cListOfCourses){
+
+	public Vector<Course> getCoursesTaken() {
+		return coursesTaken;
+	}
+
+	public DegreePlan getDegreePlan() {
+		return degreePlan;
+	}
+
+	/**
+	 * @return the studentID
+	 */
+	public long getStudentID() {
+		return studentID;
+	}
+
+	public Vector<Course> getUnusedCourses() {
+		return unusedCourses;
+	}
+
+	public void setCoursesTaken(Vector<Course> coursesTaken) {
+		this.coursesTaken = coursesTaken;
+	}
+
+	public void setDegreePlan(DegreePlan degreePlan) {
+		this.degreePlan = degreePlan;
+		unusedCourses.clear();
+		for (Course course : coursesTaken)
+			unusedCourses.add(course);
+		for (Course course : unusedCourses)
+			for (Requirement req : degreePlan.getRequirements())
+				for (Course cR : req.getMayBeFulfilledBy())
+					if (course.equals(cR)) {
+						req.setFulfilled(true);
+						break;
+					}
+	}
+
+	/**
+	 * @param studentID
+	 *            the studentID to set
+	 */
+	public void setStudentID(long studentID) {
 		this.studentID = studentID;
-		this.name = name;
-		this.sDP = sdpStudent;
-		this.unallocatedCourses = cListOfCourses;		
+	}
+
+	public void setUnusedCourses(Vector<Course> unusedCourses) {
+		this.unusedCourses = unusedCourses;
 	}
 
 	public String toString() {
-		return String.valueOf(this.studentID) + " - " + this.name + "\n"
-				+ this.sDP;
-	}
-
-	public void fillRequirements() {
-		// TODO Auto-generated method stub
-		for (Course course : unallocatedCourses)
-		{
-			for (CourseReq courseReq : this.sDP.courseReqs)
-				if (course.courseID == courseReq.course.courseID)
-					courseReq.met = true;
-		}
+		String returnMe = "==============================\n";
+		returnMe += "Student ID:   " + String.valueOf(this.getStudentID())
+				+ "\n";
+		returnMe += "Student Name: " + this.getName() + "\n";
+		returnMe += "==============================";
+		return returnMe;
 	}
 }
