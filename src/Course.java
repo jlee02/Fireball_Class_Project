@@ -6,6 +6,9 @@ public class Course implements Icourse {
 	private Vector<Icourse> prerequisites;
 
 	@Override
+	
+	// equality for courses is based on course ID
+	// returns true if the courseIDs are the same
 	public boolean equals(Course course) {
 		// TODO Auto-generated method stub
 		boolean returnMe = false;
