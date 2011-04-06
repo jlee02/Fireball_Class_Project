@@ -1,5 +1,8 @@
 import java.util.Vector;
 
+// Test Database used to contain student data, will connect to an adapter if
+// a real student database is given later on in project.
+
 public class ExternalDB {
 	private static ExternalDB eDB = null;
 
@@ -11,6 +14,7 @@ public class ExternalDB {
 
 	public Vector<DBStudent> studentDB = new Vector<DBStudent>();
 
+	// creates a database with some students with some taken classes
 	public ExternalDB() throws Exception {
 		Vector<Course> exampleCoursesTaken = new Vector<Course>();
 
@@ -29,6 +33,7 @@ public class ExternalDB {
 		studentDB.add(exampleStudent2);
 	}
 
+	//
 	public Course findCourse(String iD) throws Exception {
 		Course returnMe = null;
 		AdapterFactory.getInstance();
@@ -40,6 +45,7 @@ public class ExternalDB {
 		return returnMe;
 	}
 
+	//
 	public DBStudent findStudent(long iD) {
 		DBStudent returnMe = null;
 		for (DBStudent dBStudent : studentDB)

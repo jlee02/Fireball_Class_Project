@@ -1,5 +1,7 @@
 import java.util.Vector;
 
+// Defines a course defined by the database requirements
+
 public interface Icourse {
 	boolean equals(Course course);
 

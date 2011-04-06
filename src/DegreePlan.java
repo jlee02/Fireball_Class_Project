@@ -4,6 +4,7 @@ public class DegreePlan {
 	private String major;
 	private Vector<Requirement> requirements = new Vector<Requirement>();
 
+	
 	public DegreePlan(String major, Vector<Requirement> requirements) {
 		super();
 		this.major = major;

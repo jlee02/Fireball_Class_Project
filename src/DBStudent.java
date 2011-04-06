@@ -6,6 +6,8 @@ public class DBStudent {
 	String password;
 	long studentID;
 
+	// contains information about a student in the database
+	
 	public DBStudent(long studentID, String name, String password,
 			Vector<Course> coursesTaken) {
 		super();
@@ -15,6 +17,7 @@ public class DBStudent {
 		this.coursesTaken = coursesTaken;
 	}
 
+	// Prints the student's ID and Name
 	public String toString() {
 		String returnMe = "==============================\n";
 		returnMe += "Student ID:   " + String.valueOf(this.studentID) + "\n";

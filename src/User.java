@@ -3,6 +3,8 @@ public abstract class User {
 	private String name;
 	private String password;
 
+	// defines a user as a name with an ID and password
+	
 	public User(long iD, String name, String password) {
 		this.iD = iD;
 		this.name = name;
